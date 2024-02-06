@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .coordinates
+        {
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p id="lat" class="coordinates"></p>
+        <span>Latitude</span>
+        <p id="lng" class="coordinates">124.235</p>
+        <span>Longitude</span>
+    </div>
+    <script>
+        const lat_box = document.getElementById('lat');
+        const lng_box = document.getElementById('lng');
+        if(navigator.geolocation)
+        {
+            var watch_id = navigator.geolocation.watchPosition(success,error);
+            console.log(watch_id);
+
+        }
+        else
+        {
+            alert('Geolocation not supported!');
+        }
+
+        function success(pos)
+        {
+            // console.log(pos);
+            lat_box.innerHTML = pos.coords.latitude;
+            lng_box.innerHTML = pos.coords['longitude'];
+        }
+        function error(err)
+        {
+            alert('Error!');
+        }
+    </script>
+</body>
+</html>
